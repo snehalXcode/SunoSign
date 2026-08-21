@@ -241,6 +241,20 @@ npm run lint         # Check code quality
 npm run test         # Run tests
 ```
 
+### Deploying to Vercel
+
+The Vite frontend and Express API are configured for a single Vercel deployment:
+
+```bash
+npm install
+npm run build
+npx vercel --prod
+```
+
+Vercel serves the frontend from `dist` and routes `/api/*` to `api/index.js`. The browser uses same-origin API requests in production; local development continues to use the root `npm run dev` command.
+
+The bundled SQLite database is suitable for a demo, but Vercel serverless filesystems are temporary and should not be used for durable user accounts. For production persistence, move the database to a hosted provider such as Vercel Postgres, Neon, or Turso and replace the SQLite queries in `server/index.js`.
+
 ---
 
 ## 📂 Project Structure

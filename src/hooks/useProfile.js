@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
-const API_BASE = 'http://localhost:3001/api';
+import { apiUrl } from '@/lib/api';
 const DEFAULT = {
   id: 'user',
   name: '',
@@ -16,7 +15,7 @@ export function useProfile() {
 
   const fetchProfile = useCallback(async () => {
     try {
-      const res = await fetch(`${API_BASE}/profile/user`);
+      const res = await fetch(apiUrl('/profile/user'));
       if (res.ok) {
         const data = await res.json();
         if (data) setProfile(data);
@@ -32,7 +31,7 @@ export function useProfile() {
 
   const save = async (newProfile) => {
     try {
-      const response = await fetch(`${API_BASE}/profile`, {
+      const response = await fetch(apiUrl('/profile'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...newProfile, id: 'user' })
