@@ -253,7 +253,7 @@ npx vercel --prod
 
 Vercel serves the frontend from `dist` and routes `/api/*` to `api/index.js`. The browser uses same-origin API requests in production; local development continues to use the root `npm run dev` command.
 
-The bundled SQLite database is suitable for a demo, but Vercel serverless filesystems are temporary and should not be used for durable user accounts. For production persistence, move the database to a hosted provider such as Vercel Postgres, Neon, or Turso and replace the SQLite queries in `server/index.js`.
+The bundled SQLite database is suitable for a demo. On Vercel it is created under writable temporary `/tmp` storage, so data can be lost when a serverless instance is replaced and should not be used for durable user accounts. For production persistence, move the database to a hosted provider such as Vercel Postgres, Neon, or Turso and replace the SQLite queries in `server/index.js`.
 
 ---
 

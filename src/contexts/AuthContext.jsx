@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
         data = await response.json();
       } catch (parseErr) {
         console.error('Backend error response:', parseErr);
-        throw new Error('Backend error: Invalid response from server');
+        throw new Error(`Backend error (${response.status}): The API did not return JSON`);
       }
 
       if (!response.ok) {
@@ -80,7 +80,7 @@ export const AuthProvider = ({ children }) => {
         data = await response.json();
       } catch (parseErr) {
         console.error('Backend error response:', parseErr);
-        throw new Error('Backend error: Invalid response from server');
+        throw new Error(`Backend error (${response.status}): The API did not return JSON`);
       }
 
       if (!response.ok) {
@@ -131,7 +131,7 @@ export const AuthProvider = ({ children }) => {
         data = await response.json();
       } catch (parseErr) {
         console.error('Backend error response:', parseErr);
-        throw new Error('Backend error: Invalid response from server');
+        throw new Error(`Backend error (${response.status}): The API did not return JSON`);
       }
 
       if (!response.ok) {

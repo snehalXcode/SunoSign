@@ -10,7 +10,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Setup Database
-const dbPath = path.resolve(__dirname, 'database.sqlite');
+const dbPath = process.env.VERCEL && process.platform !== 'win32'
+  ? path.join('/tmp', 'sunosign.sqlite')
+  : process.env.VERCEL
+    ? path.resolve(__dirname, '.vercel-sunosign.sqlite')
+  : path.resolve(__dirname, 'database.sqlite');
 const db = new Database(dbPath);
 db.pragma('journal_mode = WAL');
 
